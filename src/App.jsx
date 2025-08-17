@@ -5,7 +5,7 @@ import DashboardScreen from "./screens/DashboardScreen";
 import WorkflowsScreen from "./screens/WorkflowsScreen";
 import WorkflowReportScreen from "./screens/WorkflowReportScreen";
 import ConnectionsScreen from "./screens/ConnectionsScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import WorkflowBuilderCanvas from "./components/canvas/WorkflowBuilderCanvas";
 
 export default function App() {
@@ -14,6 +14,7 @@ export default function App() {
   const [toastInfo, setToastInfo] = useState({ message: "", show: false });
   // State to toggle between dashboard UI and the builder canvas
   const [isBuilderMode, setIsBuilderMode] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   // Add state for dark mode
   const [isDark, setIsDark] = useState(false);
@@ -59,9 +60,9 @@ export default function App() {
         );
       case "connections":
         return <ConnectionsScreen showToast={showToast} />;
-      case "settings":
+      case "profile":
         return (
-          <SettingsScreen
+          <ProfileScreen
             showToast={showToast}
             isDark={isDark}
             setIsDark={setIsDark}
@@ -84,8 +85,17 @@ export default function App() {
 
   return (
     <div className="flex h-screen w-screen bg-gray-100 text-gray-900">
-      <Sidebar currentView={currentView} setView={handleSetView} />
-      <div className="flex-1 relative flex flex-col">
+      <Sidebar
+        currentView={currentView}
+        setView={handleSetView}
+        isCollapsed={isSidebarCollapsed}
+        setIsCollapsed={setIsSidebarCollapsed}
+      />
+      <div
+        className={`flex-1 relative flex flex-col transition-all duration-300 ${
+          isSidebarCollapsed ? "ml-20" : "ml-64"
+        }`}
+      >
         {renderView()}
         <Toast
           message={toastInfo.message}

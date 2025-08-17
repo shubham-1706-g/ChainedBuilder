@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/layout/Header";
 import Icon from "../components/ui/Icon";
 
-const SettingsScreen = ({ showToast, isDark, setIsDark }) => {
+const ProfileScreen = ({ showToast, isDark, setIsDark }) => {
   const [activeTab, setActiveTab] = useState("profile");
   const [profile, setProfile] = useState({
     firstName: "Alex",
@@ -143,7 +143,7 @@ const SettingsScreen = ({ showToast, isDark, setIsDark }) => {
   return (
     <div className="flex-1 flex flex-col h-screen overflow-hidden">
       <Header
-        title="Settings"
+        title="Profile & Settings"
         subtitle="Manage your profile and account preferences."
       />
       <main className="flex-1 p-6 overflow-y-auto">
@@ -184,4 +184,4 @@ const SettingsScreen = ({ showToast, isDark, setIsDark }) => {
   );
 };
 
-export default SettingsScreen;
+export default ProfileScreen;
