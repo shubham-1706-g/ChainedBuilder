@@ -9,6 +9,12 @@
   border-width: 1px;
   border-color: #e5e7eb; /* Corresponds to border-gray-200 */
   border-radius: 0.5rem; /* Corresponds to rounded-lg */
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .button {
@@ -79,6 +85,11 @@
 .button-ghost:hover {
   background-color: #f3f4f6; /* Corresponds to hover:bg-gray-100 */
   transform: translateX(2px);
+}
+
+.button-delete:hover {
+  background-color: #fee2e2; /* Corresponds to red-100 */
+  color: #ef4444; /* Corresponds to red-500 */
 }
 
 .badge {

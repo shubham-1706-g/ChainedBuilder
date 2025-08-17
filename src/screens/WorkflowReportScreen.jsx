@@ -46,6 +46,20 @@ const WorkflowReportScreen = ({ workflow, onBack }) => {
     return <span className={`badge ${styles[status]}`}>{status}</span>;
   };
 
+  const getFilterButtonClass = (filterType) => {
+    let baseClass = "px-3 py-1 text-sm rounded transition-all duration-200";
+    if (logFilter === filterType) {
+      return `${baseClass} ${
+        filterType === "Success"
+          ? "bg-green-500 text-white"
+          : filterType === "Failed"
+          ? "bg-red-500 text-white"
+          : "bg-white shadow-sm"
+      }`;
+    }
+    return `${baseClass} hover:bg-gray-200`;
+  };
+
   return (
     <div className="flex-1 flex flex-col h-screen overflow-hidden">
       <Header
@@ -76,11 +90,11 @@ const WorkflowReportScreen = ({ workflow, onBack }) => {
             <Icon name="BarChart3" className="w-5 h-5 mr-2 text-indigo-600" />{" "}
             Execution History (Last 12 Hours)
           </h3>
-          <div className="flex items-end h-48 space-x-2 group">
+          <div className="flex items-end h-48 space-x-2">
             {chartData.map((val, i) => (
               <div
                 key={i}
-                className="relative flex-1 bg-indigo-200 hover:bg-indigo-400 rounded-t-md cursor-pointer"
+                className="relative flex-1 bg-indigo-200 hover:bg-indigo-400 rounded-t-md cursor-pointer group"
                 style={{
                   height: `${val}%`,
                   transition: "background-color 0.2s",
@@ -114,9 +128,7 @@ const WorkflowReportScreen = ({ workflow, onBack }) => {
                   <button
                     key={f}
                     onClick={() => setLogFilter(f)}
-                    className={`px-3 py-1 text-sm rounded ${
-                      logFilter === f ? "bg-white shadow-sm" : ""
-                    }`}
+                    className={getFilterButtonClass(f)}
                   >
                     {f}
                   </button>
@@ -148,7 +160,7 @@ const WorkflowReportScreen = ({ workflow, onBack }) => {
                     onClick={() =>
                       setActiveLog(activeLog === log.id ? null : log.id)
                     }
-                    className="border-b border-gray-100 last:border-b-0 hover:bg-indigo-50 cursor-pointer"
+                    className="border-b border-gray-100 last:border-b-0 hover:bg-indigo-50 cursor-pointer transition-colors duration-200"
                   >
                     <td className="p-4">
                       <StatusBadge status={log.status} />

@@ -261,7 +261,7 @@ const WorkflowsScreen = ({ setSelectedWorkflow, showToast, enterBuilder }) => {
                             e.stopPropagation();
                             openDeleteModal(flow);
                           }}
-                          className="button button-ghost p-2 text-red-500 hover:bg-red-100"
+                          className="button button-ghost p-2 text-red-500 button-delete"
                         >
                           <Icon name="Trash2" className="w-4 h-4" />
                         </button>
